@@ -161,10 +161,10 @@ index b224d3756120cd82d1381c55a95ad63c18c123b7..1ff5737d282367ba64514a00c8edad86
  
      @Override
 diff --git a/net/minecraft/world/level/block/entity/BarrelBlockEntity.java b/net/minecraft/world/level/block/entity/BarrelBlockEntity.java
-index 780474a3f7b7128ca571356e26d0ae32b848d7b0..f955d8742f36741aff8d21047d3c398eaa65d882 100644
 --- a/net/minecraft/world/level/block/entity/BarrelBlockEntity.java
 +++ b/net/minecraft/world/level/block/entity/BarrelBlockEntity.java
-@@ -10,6 +10,10 @@ import net.minecraft.sounds.SoundSource;
+@@ -10,6 +10,9 @@ import net.minecraft.sounds.SoundSource;
+ import net.minecraft.sounds.SoundSource;
  import net.minecraft.world.Container;
  import net.minecraft.world.ContainerHelper;
 +import net.minecraft.world.CompoundContainer;
@@ -182,7 +182,7 @@ index 780474a3f7b7128ca571356e26d0ae32b848d7b0..f955d8742f36741aff8d21047d3c398e
              } else {
                  return false;
              }
-@@ -176,10 +176,40 @@ public class BarrelBlockEntity extends RandomizableContainerBlockEntity implemen
+@@ -176,10 +176,39 @@ public class BarrelBlockEntity extends RandomizableContainerBlockEntity implemen
      }
  
      public void playSound(BlockState state, SoundEvent sound) {
