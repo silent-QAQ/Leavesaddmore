@@ -104,7 +104,7 @@ index b224d3756120cd82d1381c55a95ad63c18c123b7..1ff5737d282367ba64514a00c8edad86
      }
  
 +    public DoubleBlockCombiner.NeighborCombineResult<? extends BarrelBlockEntity> combine(BlockState state, Level level, BlockPos pos, boolean override) {
-+        if (!org.leavesmc.leaves.LeavesConfig.modifyConfig.largeBarrel) {
++        if (!org.leavesmc.leaves.LeavesConfig.modify.largeBarrel) {
 +            BlockEntity blockEntity = level.getBlockEntity(pos);
 +            return blockEntity instanceof BarrelBlockEntity ? new DoubleBlockCombiner.NeighborCombineResult.Single<>((BarrelBlockEntity) blockEntity) : DoubleBlockCombiner.Combiner::acceptNone;
 +        }
@@ -164,7 +164,16 @@ diff --git a/net/minecraft/world/level/block/entity/BarrelBlockEntity.java b/net
 index 780474a3f7b7128ca571356e26d0ae32b848d7b0..f955d8742f36741aff8d21047d3c398eaa65d882 100644
 --- a/net/minecraft/world/level/block/entity/BarrelBlockEntity.java
 +++ b/net/minecraft/world/level/block/entity/BarrelBlockEntity.java
-@@ -81,7 +81,7 @@ public class BarrelBlockEntity extends RandomizableContainerBlockEntity implemen
+@@ -10,6 +10,10 @@ import net.minecraft.sounds.SoundSource;
+ import net.minecraft.world.Container;
+ import net.minecraft.world.ContainerHelper;
++import net.minecraft.world.CompoundContainer;
++import net.minecraft.world.level.block.DoubleBlockCombiner;
++import net.minecraft.core.Direction;
+ import net.minecraft.world.entity.ContainerUser;
+ import net.minecraft.world.entity.player.Inventory;
+
+@@ -81,7 +85,7 @@ public class BarrelBlockEntity extends RandomizableContainerBlockEntity implemen
          public boolean isOwnContainer(Player player) {
              if (player.containerMenu instanceof ChestMenu) {
                  Container container = ((ChestMenu)player.containerMenu).getContainer();
@@ -185,20 +194,18 @@ index 780474a3f7b7128ca571356e26d0ae32b848d7b0..f955d8742f36741aff8d21047d3c398e
 +        double d1 = this.worldPosition.getY() + 0.5;
 +        double d2 = this.worldPosition.getZ() + 0.5;
 +
-+        if (org.leavesmc.leaves.LeavesConfig.modifyConfig.largeBarrel && state.getBlock() instanceof BarrelBlock barrelBlock) {
++        if (org.leavesmc.leaves.LeavesConfig.modify.largeBarrel && state.getBlock() instanceof BarrelBlock barrelBlock) {
 +            DoubleBlockCombiner.NeighborCombineResult<? extends BarrelBlockEntity> combineResult = barrelBlock.combine(state, this.level, this.worldPosition, true);
 +            if (combineResult instanceof DoubleBlockCombiner.NeighborCombineResult.Double<? extends BarrelBlockEntity>) {
 +                Direction facing = state.getValue(BarrelBlock.FACING);
 +                BlockPos neighborPos = this.worldPosition.relative(facing.getOpposite());
-+                
-+                // Only play sound for the "first" one to avoid duplication
++
 +                if (this.worldPosition.getY() > neighborPos.getY() || 
 +                    (this.worldPosition.getY() == neighborPos.getY() && this.worldPosition.getX() > neighborPos.getX()) ||
 +                    (this.worldPosition.getY() == neighborPos.getY() && this.worldPosition.getX() == neighborPos.getX() && this.worldPosition.getZ() > neighborPos.getZ())) {
 +                    return;
 +                }
-+                
-+                // Move sound to the center of the two barrels
++
 +                d += (neighborPos.getX() - this.worldPosition.getX()) * 0.5;
 +                d1 += (neighborPos.getY() - this.worldPosition.getY()) * 0.5;
 +                d2 += (neighborPos.getZ() - this.worldPosition.getZ()) * 0.5;

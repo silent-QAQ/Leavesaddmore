@@ -7,7 +7,6 @@ import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.chat.Component;
 import net.minecraft.server.MinecraftServer;
 import net.minecraft.server.level.ServerPlayer;
-import net.minecraft.world.InteractionHand;
 import net.minecraft.world.entity.player.Inventory;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.inventory.ChestMenu;
@@ -15,14 +14,12 @@ import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.item.component.CustomData;
-import org.bukkit.Bukkit;
 import org.jetbrains.annotations.NotNull;
 import org.leavesmc.leaves.bot.agent.actions.*;
 import org.leavesmc.leaves.event.bot.BotActionStopEvent;
 
 import java.util.HashMap;
 import java.util.Map;
-import java.util.logging.Level;
 
 public class BotInventoryContainer extends Inventory {
 
@@ -102,8 +99,8 @@ public class BotInventoryContainer extends Inventory {
                     ItemStack botItem = original.getItem(hotbarSlot);
                     ItemStack stack = botItem.isEmpty() ? new ItemStack(Items.STRUCTURE_VOID) : botItem.copy();
                     Component name = Component.literal("切换至快捷栏第 " + (hotbarSlot + 1) + " 格")
-                        .withStyle(hotbarSlot == original.selected ? ChatFormatting.YELLOW : ChatFormatting.WHITE);
-                    if (hotbarSlot == original.selected) {
+                        .withStyle(hotbarSlot == original.getSelectedSlot() ? ChatFormatting.YELLOW : ChatFormatting.WHITE);
+                    if (hotbarSlot == original.getSelectedSlot()) {
                         stack.set(DataComponents.ENCHANTMENT_GLINT_OVERRIDE, true);
                     }
                     
@@ -125,7 +122,7 @@ public class BotInventoryContainer extends Inventory {
         if (!(player instanceof ServerBot bot)) return -999;
         return switch (slot) {
             // Current Mainhand
-            case 6 -> bot.getInventory().selected;
+            case 6 -> bot.getInventory().getSelectedSlot();
 
             // Offhand
             case 7 -> 40;
@@ -186,9 +183,6 @@ public class BotInventoryContainer extends Inventory {
             return;
         }
 
-        // Add logging for debugging
-        Bukkit.getLogger().log(Level.INFO, "BotInventory interaction: slot " + slot + ", page " + buttonPage);
-
         switch (slot) {
             case 0 -> {
                 bot.stopAllActions();
@@ -207,12 +201,11 @@ public class BotInventoryContainer extends Inventory {
             }
             case 8 -> {
                 buttonPage = (buttonPage + 1) % 2;
-                Bukkit.getLogger().log(Level.INFO, "Toggled buttonPage to " + buttonPage);
             }
             default -> {
                 if (slot >= 9 && slot <= 17) {
                     if (buttonPage == 0) {
-                        bot.getInventory().selected = slot - 9;
+                        bot.getInventory().setSelectedSlot(slot - 9);
                         bot.getBukkitEntity().getInventory().setHeldItemSlot(slot - 9);
                         bot.detectEquipmentUpdates();
                     } else {
