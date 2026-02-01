@@ -8,7 +8,7 @@ diff --git a/net/minecraft/world/level/block/BarrelBlock.java b/net/minecraft/wo
 index b224d3756120cd82d1381c55a95ad63c18c123b7..1ff5737d282367ba64514a00c8edad8618c217e4 100644
 --- a/net/minecraft/world/level/block/BarrelBlock.java
 +++ b/net/minecraft/world/level/block/BarrelBlock.java
-@@ -5,10 +5,16 @@ import net.minecraft.core.Direction;
+@@ -6,11 +6,17 @@ import net.minecraft.core.Direction;
 +import net.minecraft.network.chat.Component;
  import net.minecraft.server.level.ServerLevel;
  import net.minecraft.stats.Stats;
@@ -26,7 +26,7 @@ index b224d3756120cd82d1381c55a95ad63c18c123b7..1ff5737d282367ba64514a00c8edad86
  import net.minecraft.world.item.context.BlockPlaceContext;
  import net.minecraft.world.level.Level;
  import net.minecraft.world.level.block.entity.BarrelBlockEntity;
-@@ -19,7 +25,9 @@ import net.minecraft.world.level.block.state.BlockState;
+@@ -20,6 +26,8 @@ import net.minecraft.world.level.block.state.BlockState;
  import net.minecraft.world.level.block.state.StateDefinition;
  import net.minecraft.world.level.block.state.properties.BlockStateProperties;
  import net.minecraft.world.level.block.state.properties.BooleanProperty;
@@ -36,7 +36,7 @@ index b224d3756120cd82d1381c55a95ad63c18c123b7..1ff5737d282367ba64514a00c8edad86
  import net.minecraft.world.phys.BlockHitResult;
  import org.jspecify.annotations.Nullable;
  
-@@ -27,4 +35,57 @@ public class BarrelBlock extends BaseEntityBlock {
+@@ -28,7 +36,60 @@ public class BarrelBlock extends BaseEntityBlock {
      public static final MapCodec<BarrelBlock> CODEC = simpleCodec(BarrelBlock::new);
      public static final EnumProperty<Direction> FACING = BlockStateProperties.FACING;
      public static final BooleanProperty OPEN = BlockStateProperties.OPEN;
@@ -97,7 +97,7 @@ index b224d3756120cd82d1381c55a95ad63c18c123b7..1ff5737d282367ba64514a00c8edad86
      @Override
      public MapCodec<BarrelBlock> codec() {
          return CODEC;
-@@ -42,13 +103,57 @@ public class BarrelBlock extends BaseEntityBlock {
+@@ -41,15 +102,57 @@ public class BarrelBlock extends BaseEntityBlock {
  
      @Override
      protected InteractionResult useWithoutItem(BlockState state, Level level, BlockPos pos, Player player, BlockHitResult hitResult) {
@@ -158,17 +158,17 @@ index b224d3756120cd82d1381c55a95ad63c18c123b7..1ff5737d282367ba64514a00c8edad86
      // Leaves start - behaviour 1.21.1-
      @Override
      protected void onRemove(BlockState state, Level level, BlockPos pos, BlockState newState, boolean isMoving) {
-@@ -75,7 +180,11 @@ public class BarrelBlock extends BaseEntityBlock {
+@@ -74,7 +177,11 @@
  
      @Override
      protected int getAnalogOutputSignal(BlockState state, Level level, BlockPos pos, Direction direction) {
 -        return AbstractContainerMenu.getRedstoneSignalFromBlockEntity(level.getBlockEntity(pos));
 +        return AbstractContainerMenu.getRedstoneSignalFromContainer(this.getContainer(state, level, pos));
-+    }
-+
+     }
+ 
 +    public @Nullable Container getContainer(BlockState state, Level level, BlockPos pos) {
 +        return this.combine(state, level, pos, false).apply(BARREL_COMBINER).orElse(null);
-     }
++    }
  
      @Override
 diff --git a/net/minecraft/world/level/block/entity/BarrelBlockEntity.java b/net/minecraft/world/level/block/entity/BarrelBlockEntity.java
