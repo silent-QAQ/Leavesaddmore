@@ -2,7 +2,7 @@ name: Leaves Test CI
 
 on:
   push:
-    branches-ignore: [ master ]
+    branches: [ main ]
   pull_request:
   workflow_dispatch:
 
