@@ -8,7 +8,8 @@ diff --git a/net/minecraft/world/level/block/BarrelBlock.java b/net/minecraft/wo
 index b224d3756120cd82d1381c55a95ad63c18c123b7..1ff5737d282367ba64514a00c8edad8618c217e4 100644
 --- a/net/minecraft/world/level/block/BarrelBlock.java
 +++ b/net/minecraft/world/level/block/BarrelBlock.java
-@@ -6,11 +6,17 @@ import net.minecraft.core.Direction;
+@@ -5,12 +5,18 @@ import net.minecraft.core.Direction;
+ import net.minecraft.core.Direction;
 +import net.minecraft.network.chat.Component;
  import net.minecraft.server.level.ServerLevel;
  import net.minecraft.stats.Stats;
@@ -26,7 +27,8 @@ index b224d3756120cd82d1381c55a95ad63c18c123b7..1ff5737d282367ba64514a00c8edad86
  import net.minecraft.world.item.context.BlockPlaceContext;
  import net.minecraft.world.level.Level;
  import net.minecraft.world.level.block.entity.BarrelBlockEntity;
-@@ -20,6 +26,8 @@ import net.minecraft.world.level.block.state.BlockState;
+@@ -19,7 +25,9 @@ import net.minecraft.world.level.block.state.BlockState;
+ import net.minecraft.world.level.block.state.BlockState;
  import net.minecraft.world.level.block.state.StateDefinition;
  import net.minecraft.world.level.block.state.properties.BlockStateProperties;
  import net.minecraft.world.level.block.state.properties.BooleanProperty;
@@ -36,7 +38,8 @@ index b224d3756120cd82d1381c55a95ad63c18c123b7..1ff5737d282367ba64514a00c8edad86
  import net.minecraft.world.phys.BlockHitResult;
  import org.jspecify.annotations.Nullable;
  
-@@ -28,7 +36,60 @@ public class BarrelBlock extends BaseEntityBlock {
+@@ -27,8 +35,61 @@ public class BarrelBlock extends BaseEntityBlock {
+ public class BarrelBlock extends BaseEntityBlock {
      public static final MapCodec<BarrelBlock> CODEC = simpleCodec(BarrelBlock::new);
      public static final EnumProperty<Direction> FACING = BlockStateProperties.FACING;
      public static final BooleanProperty OPEN = BlockStateProperties.OPEN;
@@ -97,7 +100,7 @@ index b224d3756120cd82d1381c55a95ad63c18c123b7..1ff5737d282367ba64514a00c8edad86
      @Override
      public MapCodec<BarrelBlock> codec() {
          return CODEC;
-@@ -41,15 +102,57 @@ public class BarrelBlock extends BaseEntityBlock {
+@@ -41,20 +102,23 @@ public class BarrelBlock extends BaseEntityBlock {
  
      @Override
      protected InteractionResult useWithoutItem(BlockState state, Level level, BlockPos pos, Player player, BlockHitResult hitResult) {
@@ -158,7 +161,7 @@ index b224d3756120cd82d1381c55a95ad63c18c123b7..1ff5737d282367ba64514a00c8edad86
      // Leaves start - behaviour 1.21.1-
      @Override
      protected void onRemove(BlockState state, Level level, BlockPos pos, BlockState newState, boolean isMoving) {
-@@ -74,7 +177,11 @@
+@@ -75,7 +139,10 @@
  
      @Override
      protected int getAnalogOutputSignal(BlockState state, Level level, BlockPos pos, Direction direction) {
@@ -259,7 +262,8 @@ diff --git a/net/minecraft/world/level/block/entity/HopperBlockEntity.java b/net
 index df720bc9cc9390cc51e57470dabf0333e18554a1..0446e5d1bbd0cf96c44efb46bf7ee0cb983489cd 100644
 --- a/net/minecraft/world/level/block/entity/HopperBlockEntity.java
 +++ b/net/minecraft/world/level/block/entity/HopperBlockEntity.java
-@@ -21,6 +21,8 @@ import net.minecraft.world.inventory.HopperMenu;
+@@ -21,7 +21,9 @@ import net.minecraft.world.inventory.HopperMenu;
+ import net.minecraft.world.inventory.HopperMenu;
  import net.minecraft.world.item.ItemStack;
  import net.minecraft.world.level.Level;
  import net.minecraft.world.level.block.Block;
