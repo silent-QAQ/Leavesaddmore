@@ -26,6 +26,8 @@ jobs:
         run: |
           git config --global user.email "ci-test@leavesmc.org"
           git config --global user.name "LeavesMC Test CI"
+      - name: Ensure Gradle Wrapper Executable
+        run: chmod +x ./gradlew
       - name: Apply Patches
         run: ./gradlew applyAllPatches
       - name: Create Leavesclip Jar
