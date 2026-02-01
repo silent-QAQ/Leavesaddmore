@@ -18,7 +18,7 @@ index b224d3756120cd82d1381c55a95ad63c18c123b7..1ff5737d282367ba64514a00c8edad86
  import net.minecraft.world.Containers;
  import net.minecraft.world.InteractionResult;
 +import net.minecraft.world.MenuProvider;
- import net.minecraft.world.entity.monster.piglin.PiglinAi;
++import net.minecraft.world.entity.monster.piglin.PiglinAi;
 +import net.minecraft.world.entity.player.Inventory;
  import net.minecraft.world.entity.player.Player;
  import net.minecraft.world.inventory.AbstractContainerMenu;
