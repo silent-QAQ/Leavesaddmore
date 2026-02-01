@@ -8,8 +8,8 @@ diff --git a/net/minecraft/world/level/block/BarrelBlock.java b/net/minecraft/wo
 index b224d3756120cd82d1381c55a95ad63c18c123b7..1ff5737d282367ba64514a00c8edad8618c217e4 100644
 --- a/net/minecraft/world/level/block/BarrelBlock.java
 +++ b/net/minecraft/world/level/block/BarrelBlock.java
-@@ -7,15 +7,17 @@ import net.minecraft.core.Direction;
- import net.minecraft.network.chat.Component;
+@@ -5,10 +5,16 @@ import net.minecraft.core.Direction;
++import net.minecraft.network.chat.Component;
  import net.minecraft.server.level.ServerLevel;
  import net.minecraft.stats.Stats;
  import net.minecraft.util.RandomSource;
@@ -17,16 +17,16 @@ index b224d3756120cd82d1381c55a95ad63c18c123b7..1ff5737d282367ba64514a00c8edad86
 +import net.minecraft.world.Container;
  import net.minecraft.world.Containers;
  import net.minecraft.world.InteractionResult;
- import net.minecraft.world.MenuProvider;
++import net.minecraft.world.MenuProvider;
  import net.minecraft.world.entity.monster.piglin.PiglinAi;
- import net.minecraft.world.entity.player.Inventory;
++import net.minecraft.world.entity.player.Inventory;
  import net.minecraft.world.entity.player.Player;
  import net.minecraft.world.inventory.AbstractContainerMenu;
- import net.minecraft.world.inventory.ChestMenu;
++import net.minecraft.world.inventory.ChestMenu;
  import net.minecraft.world.item.context.BlockPlaceContext;
  import net.minecraft.world.level.Level;
  import net.minecraft.world.level.block.entity.BarrelBlockEntity;
-@@ -27,7 +29,9 @@ import net.minecraft.world.level.block.state.BlockState;
+@@ -19,7 +25,9 @@ import net.minecraft.world.level.block.state.BlockState;
  import net.minecraft.world.level.block.state.StateDefinition;
  import net.minecraft.world.level.block.state.properties.BlockStateProperties;
  import net.minecraft.world.level.block.state.properties.BooleanProperty;
@@ -36,7 +36,8 @@ index b224d3756120cd82d1381c55a95ad63c18c123b7..1ff5737d282367ba64514a00c8edad86
  import net.minecraft.world.phys.BlockHitResult;
  import org.jspecify.annotations.Nullable;
  
-@@ -35,6 +39,59 @@ public class BarrelBlock extends BaseEntityBlock {
+@@ -27,4 +35,57 @@ public class BarrelBlock extends BaseEntityBlock {
+     public static final MapCodec<BarrelBlock> CODEC = simpleCodec(BarrelBlock::new);
      public static final EnumProperty<Direction> FACING = BlockStateProperties.FACING;
      public static final BooleanProperty OPEN = BlockStateProperties.OPEN;
  
@@ -96,7 +97,7 @@ index b224d3756120cd82d1381c55a95ad63c18c123b7..1ff5737d282367ba64514a00c8edad86
      @Override
      public MapCodec<BarrelBlock> codec() {
          return CODEC;
-@@ -48,14 +105,57 @@ public class BarrelBlock extends BaseEntityBlock {
+@@ -42,13 +103,57 @@ public class BarrelBlock extends BaseEntityBlock {
  
      @Override
      protected InteractionResult useWithoutItem(BlockState state, Level level, BlockPos pos, Player player, BlockHitResult hitResult) {
@@ -157,7 +158,7 @@ index b224d3756120cd82d1381c55a95ad63c18c123b7..1ff5737d282367ba64514a00c8edad86
      // Leaves start - behaviour 1.21.1-
      @Override
      protected void onRemove(BlockState state, Level level, BlockPos pos, BlockState newState, boolean isMoving) {
-@@ -82,7 +190,11 @@ public class BarrelBlock extends BaseEntityBlock {
+@@ -75,7 +180,11 @@ public class BarrelBlock extends BaseEntityBlock {
  
      @Override
      protected int getAnalogOutputSignal(BlockState state, Level level, BlockPos pos, Direction direction) {
