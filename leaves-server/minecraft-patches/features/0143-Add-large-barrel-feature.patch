@@ -8,7 +8,7 @@ diff --git a/net/minecraft/world/level/block/BarrelBlock.java b/net/minecraft/wo
 index b224d3756120cd82d1381c55a95ad63c18c123b7..1ff5737d282367ba64514a00c8edad8618c217e4 100644
 --- a/net/minecraft/world/level/block/BarrelBlock.java
 +++ b/net/minecraft/world/level/block/BarrelBlock.java
-@@ -7,9 +7,18 @@ import net.minecraft.core.Direction;
+@@ -7,16 +7,18 @@ import net.minecraft.core.Direction;
  import net.minecraft.network.chat.Component;
  import net.minecraft.server.level.ServerLevel;
  import net.minecraft.stats.Stats;
@@ -26,7 +26,7 @@ index b224d3756120cd82d1381c55a95ad63c18c123b7..1ff5737d282367ba64514a00c8edad86
  import net.minecraft.world.item.context.BlockPlaceContext;
  import net.minecraft.world.level.Level;
  import net.minecraft.world.level.block.entity.BarrelBlockEntity;
-@@ -20,6 +29,8 @@ import net.minecraft.world.level.block.state.BlockState;
+@@ -27,7 +29,9 @@ import net.minecraft.world.level.block.state.BlockState;
  import net.minecraft.world.level.block.state.StateDefinition;
  import net.minecraft.world.level.block.state.properties.BlockStateProperties;
  import net.minecraft.world.level.block.state.properties.BooleanProperty;
@@ -36,7 +36,7 @@ index b224d3756120cd82d1381c55a95ad63c18c123b7..1ff5737d282367ba64514a00c8edad86
  import net.minecraft.world.phys.BlockHitResult;
  import org.jspecify.annotations.Nullable;
  
-@@ -28,6 +39,59 @@ public class BarrelBlock extends BaseEntityBlock {
+@@ -35,6 +39,59 @@ public class BarrelBlock extends BaseEntityBlock {
      public static final EnumProperty<Direction> FACING = BlockStateProperties.FACING;
      public static final BooleanProperty OPEN = BlockStateProperties.OPEN;
  
@@ -96,7 +96,7 @@ index b224d3756120cd82d1381c55a95ad63c18c123b7..1ff5737d282367ba64514a00c8edad86
      @Override
      public MapCodec<BarrelBlock> codec() {
          return CODEC;
-@@ -41,14 +105,58 @@ public class BarrelBlock extends BaseEntityBlock {
+@@ -48,13 +105,58 @@ public class BarrelBlock extends BaseEntityBlock {
  
      @Override
      protected InteractionResult useWithoutItem(BlockState state, Level level, BlockPos pos, Player player, BlockHitResult hitResult) {
@@ -157,7 +157,7 @@ index b224d3756120cd82d1381c55a95ad63c18c123b7..1ff5737d282367ba64514a00c8edad86
      // Leaves start - behaviour 1.21.1-
      @Override
      protected void onRemove(BlockState state, Level level, BlockPos pos, BlockState newState, boolean isMoving) {
-@@ -82,7 +190,11 @@ public class BarrelBlock extends BaseEntityBlock {
+@@ -89,6 +190,11 @@ public class BarrelBlock extends BaseEntityBlock {
  
      @Override
      protected int getAnalogOutputSignal(BlockState state, Level level, BlockPos pos, Direction direction) {
@@ -174,7 +174,7 @@ diff --git a/net/minecraft/world/level/block/entity/BarrelBlockEntity.java b/net
 index 780474a3f7b7128ca571356e26d0ae32b848d7b0..f955d8742f36741aff8d21047d3c398eaa65d882 100644
 --- a/net/minecraft/world/level/block/entity/BarrelBlockEntity.java
 +++ b/net/minecraft/world/level/block/entity/BarrelBlockEntity.java
-@@ -1,12 +1,15 @@
+@@ -1,24 +1,27 @@
  package net.minecraft.world.level.block.entity;
  
  import java.util.List;
@@ -211,7 +211,7 @@ index 780474a3f7b7128ca571356e26d0ae32b848d7b0..f955d8742f36741aff8d21047d3c398e
              } else {
                  return false;
              }
-@@ -176,10 +179,40 @@ public class BarrelBlockEntity extends RandomizableContainerBlockEntity implemen
+@@ -176,10 +179,38 @@ public class BarrelBlockEntity extends RandomizableContainerBlockEntity implemen
      }
  
      public void playSound(BlockState state, SoundEvent sound) {
@@ -258,7 +258,7 @@ diff --git a/net/minecraft/world/level/block/entity/HopperBlockEntity.java b/net
 index df720bc9cc9390cc51e57470dabf0333e18554a1..0446e5d1bbd0cf96c44efb46bf7ee0cb983489cd 100644
 --- a/net/minecraft/world/level/block/entity/HopperBlockEntity.java
 +++ b/net/minecraft/world/level/block/entity/HopperBlockEntity.java
-@@ -20,6 +20,8 @@ import net.minecraft.world.inventory.HopperMenu;
+@@ -20,7 +20,9 @@ import net.minecraft.world.inventory.HopperMenu;
  import net.minecraft.world.item.ItemStack;
  import net.minecraft.world.level.Level;
  import net.minecraft.world.level.block.Block;
