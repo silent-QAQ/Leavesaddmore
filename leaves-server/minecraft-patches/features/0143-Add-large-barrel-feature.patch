@@ -8,7 +8,7 @@ diff --git a/net/minecraft/world/level/block/BarrelBlock.java b/net/minecraft/wo
 index b224d3756120cd82d1381c55a95ad63c18c123b7..1ff5737d282367ba64514a00c8edad8618c217e4 100644
 --- a/net/minecraft/world/level/block/BarrelBlock.java
 +++ b/net/minecraft/world/level/block/BarrelBlock.java
-@@ -7,16 +7,18 @@ import net.minecraft.core.Direction;
+@@ -7,15 +7,17 @@ import net.minecraft.core.Direction;
  import net.minecraft.network.chat.Component;
  import net.minecraft.server.level.ServerLevel;
  import net.minecraft.stats.Stats;
@@ -96,7 +96,7 @@ index b224d3756120cd82d1381c55a95ad63c18c123b7..1ff5737d282367ba64514a00c8edad86
      @Override
      public MapCodec<BarrelBlock> codec() {
          return CODEC;
-@@ -48,13 +105,58 @@ public class BarrelBlock extends BaseEntityBlock {
+@@ -48,14 +105,57 @@ public class BarrelBlock extends BaseEntityBlock {
  
      @Override
      protected InteractionResult useWithoutItem(BlockState state, Level level, BlockPos pos, Player player, BlockHitResult hitResult) {
@@ -157,7 +157,7 @@ index b224d3756120cd82d1381c55a95ad63c18c123b7..1ff5737d282367ba64514a00c8edad86
      // Leaves start - behaviour 1.21.1-
      @Override
      protected void onRemove(BlockState state, Level level, BlockPos pos, BlockState newState, boolean isMoving) {
-@@ -89,6 +190,11 @@ public class BarrelBlock extends BaseEntityBlock {
+@@ -82,7 +190,11 @@ public class BarrelBlock extends BaseEntityBlock {
  
      @Override
      protected int getAnalogOutputSignal(BlockState state, Level level, BlockPos pos, Direction direction) {
