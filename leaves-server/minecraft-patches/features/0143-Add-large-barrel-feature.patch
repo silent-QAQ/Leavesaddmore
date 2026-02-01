@@ -258,7 +258,7 @@ diff --git a/net/minecraft/world/level/block/entity/HopperBlockEntity.java b/net
 index df720bc9cc9390cc51e57470dabf0333e18554a1..0446e5d1bbd0cf96c44efb46bf7ee0cb983489cd 100644
 --- a/net/minecraft/world/level/block/entity/HopperBlockEntity.java
 +++ b/net/minecraft/world/level/block/entity/HopperBlockEntity.java
-@@ -20,7 +20,9 @@ import net.minecraft.world.inventory.HopperMenu;
+@@ -21,6 +21,8 @@ import net.minecraft.world.inventory.HopperMenu;
  import net.minecraft.world.item.ItemStack;
  import net.minecraft.world.level.Level;
  import net.minecraft.world.level.block.Block;
