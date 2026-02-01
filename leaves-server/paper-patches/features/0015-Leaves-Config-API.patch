@@ -1,0 +1,22 @@
+From 0000000000000000000000000000000000000000 Mon Sep 17 00:00:00 2001
+From: Lumine1909 <133463833+Lumine1909@users.noreply.github.com>
+Date: Sun, 18 May 2025 19:58:42 +0800
+Subject: [PATCH] Leaves Config API
+
+
+diff --git a/src/main/java/org/bukkit/craftbukkit/CraftServer.java b/src/main/java/org/bukkit/craftbukkit/CraftServer.java
+index 3e0fce66bf99c551a8eef8eea664f7e5007bae77..85483a16d4a2fbbb17931cb810c415d04d9e9481 100644
+--- a/src/main/java/org/bukkit/craftbukkit/CraftServer.java
++++ b/src/main/java/org/bukkit/craftbukkit/CraftServer.java
+@@ -3003,4 +3003,11 @@ public final class CraftServer implements Server {
+         return internalBytebufHandler;
+     }
+     // Leaves end - Bytebuf API
++
++    // Leaves start - Config API
++    @Override
++    public org.leavesmc.leaves.config.LeavesConfigProvider getLeavesConfig() {
++        return org.leavesmc.leaves.config.InternalConfigProvider.INSTANCE;
++    }
++    // Leaves end - Config API
+ }

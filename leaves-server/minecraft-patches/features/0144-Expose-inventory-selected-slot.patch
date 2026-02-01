@@ -1,0 +1,19 @@
+From 0000000000000000000000000000000000000000 Mon Sep 17 00:00:00 2001
+From: Administrator <admin@example.com>
+Date: Sat, 31 Jan 2026 11:14:59 +0800
+Subject: [PATCH] Expose inventory selected slot
+
+
+diff --git a/net/minecraft/world/entity/player/Inventory.java b/net/minecraft/world/entity/player/Inventory.java
+index 79823d6b0b0a42a6a7b0a4f5b8fca9a31d826fe7..c0010558b9074f6a126499bfcf73cc2a2bb9ecb4 100644
+--- a/net/minecraft/world/entity/player/Inventory.java
++++ b/net/minecraft/world/entity/player/Inventory.java
+@@ -53,7 +53,7 @@ public class Inventory implements Container, Nameable {
+     );
+     private static final Component DEFAULT_NAME = Component.translatable("container.inventory");
+     private final NonNullList<ItemStack> items = NonNullList.withSize(36, ItemStack.EMPTY);
+-    private int selected;
++    public int selected;
+     public final Player player;
+     public final EntityEquipment equipment;
+     private int timesChanged;
